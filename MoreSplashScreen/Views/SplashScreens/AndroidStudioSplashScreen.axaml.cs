@@ -47,11 +47,40 @@ public partial class AndroidStudioSplashScreen : SplashWindowBase
         }
     }
 
+    //private Bitmap GetBitmapFromUri(Uri uri)
+    //{
+    //    using var stream = AssetLoader.Open(uri);
+    //    var bitmap = new Bitmap(stream);
+    //    return bitmap;
+    //}
+
     private Bitmap GetBitmapFromUri(Uri uri)
     {
-        using var stream = AssetLoader.Open(uri);
-        var bitmap = new Bitmap(stream);
-        return bitmap;
+
+        if (uri.IsAbsoluteUri && uri.IsFile)
+        {
+            return new Bitmap(uri.LocalPath);
+        }
+
+
+        if (uri.IsAbsoluteUri &&
+            uri.Scheme.Equals("avares", StringComparison.OrdinalIgnoreCase))
+        {
+            using var stream = AssetLoader.Open(uri);
+            return new Bitmap(stream);
+        }
+
+
+        var path = uri.ToString();
+
+        if (File.Exists(path))
+        {
+            return new Bitmap(path);
+        }
+
+
+        using var assetStream = AssetLoader.Open(uri);
+        return new Bitmap(assetStream);
     }
 
     private IImage? GetSplashImage()
