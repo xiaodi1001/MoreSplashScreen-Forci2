@@ -12,7 +12,7 @@ apiVersion: 2.1.0.0
 author: xiaodi1001 & HelloWRC
 repoOwner: xiaodi1001
 repoName: MoreSplashScreen-Forci2
-assetsRoot: master/MoreSplashScreen-Forci2
+assetsRoot: main/MoreSplashScreen-Forci2
 artifactName: MoreSplashScreen-Forci2.cipx
 supportedOSPlatforms:
 - Windows
