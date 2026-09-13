@@ -1,0 +1,57 @@
+﻿<ci:SplashWindowBase  x:Class="MoreSplashScreen.Views.SplashScreens.AndroidStudioSplashScreen"
+                        xmlns="https://github.com/avaloniaui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:MoreSplashScreen.Views.SplashScreens"
+                        xmlns:ci="http://classisland.tech/schemas/xaml/core"
+                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                        mc:Ignorable="d"
+                        Background="{x:Null}"
+                        TextElement.Foreground="#111111"
+                        TransparencyLevelHint="Transparent"
+                        SystemDecorations="None"
+                        WindowStartupLocation="CenterScreen"
+                        Title="ClassIsland 正在启动" Height="400" Width="640"
+                        Cursor="Wait"
+                        ShowInTaskbar="False"
+                        Topmost="True"
+                        Closing="AndroidStudioSplashScreen_OnClosing"
+                        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Border CornerRadius="4" Background="White" ClipToBounds="True">
+        <Grid>
+            <Image Source="{Binding SplashImage}" Stretch="UniformToFill"/>
+
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left"
+                  Margin="400,32,0,0" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto">
+                <Image Grid.Row="0" Grid.Column="0" Source="avares://ClassIsland/Assets/AppLogo.png" 
+                       Height="32" Width="32"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="ClassIsland"
+                           VerticalAlignment="Center"
+                           FontWeight="Medium"
+                           Margin="6 0 0 0"
+                           FontSize="32"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           VerticalAlignment="Center"
+                           Margin="6,-4,0,0"
+                           FontSize="14">
+                    <Run Text="{x:Static ci:AppBase.AppCodeName}" FontWeight="Medium"/>
+                    <Run Text="//" Foreground="#686868"/>
+                    <Run Text="{x:Static ci:AppBase.AppVersion}" Foreground="#686868"/>
+                </TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="6,8,0,0" FontSize="13"
+                           Text="{Binding SplashService.SplashStatus}"
+                           d:Text="正在启动…" Foreground="#686868"/>
+            </Grid>
+            <TextBlock Text="Powered by .NET" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                       FontSize="10" Foreground="#686868" Margin="42,0,0,12"/>
+
+            <Canvas Height="4" Width="640" VerticalAlignment="Bottom">
+                <Rectangle Width="640" Height="4" Fill="DodgerBlue" Canvas.Bottom="0"
+                           Opacity="0"
+                           x:Name="ProgressBarFill"/>
+            </Canvas>
+        </Grid>
+    </Border>
+</ci:SplashWindowBase>

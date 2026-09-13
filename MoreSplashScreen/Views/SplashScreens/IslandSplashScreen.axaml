@@ -1,0 +1,61 @@
+﻿<Window  x:Class="MoreSplashScreen.Views.SplashScreens.IslandSplashScreen"
+                        xmlns="https://github.com/avaloniaui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:MoreSplashScreen.Views.SplashScreens"
+                        xmlns:ci="http://classisland.tech/schemas/xaml/core"
+                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                        mc:Ignorable="d"
+                        Background="{x:Null}"
+                        TextElement.Foreground="#FFFFFF"
+                        TransparencyLevelHint="Transparent"
+                        SystemDecorations="None"
+                        WindowStartupLocation="Manual"
+                        Title="ClassIsland 正在启动" Height="60" Width="420"
+                        Loaded="Cal"
+                        Cursor="Wait"
+                        ShowInTaskbar="False"
+                        Topmost="True"
+                        Closing="IslandSplashScreen_OnClosing"
+                        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Border CornerRadius="4" Background="#111111" ClipToBounds="True">
+        <Grid>
+            <Canvas Height="4" Width="400"  VerticalAlignment="Bottom" ClipToBounds="True">
+                <Rectangle Width="400" Height="4" Fill="DodgerBlue" Canvas.Bottom="0"
+                           Opacity="0"
+                           x:Name="ProgressBarFill"/>
+            </Canvas>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="116*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="avares://ClassIsland/Assets/AppLogo.png" 
+                       Height="20" Width="20" Margin="0,9,0,9"/>
+                <TextBlock Grid.Column="1" Text="ClassIsland"
+                           VerticalAlignment="Top"
+                           FontWeight="Medium"
+                           Margin="5,-2,1,0"
+                           FontSize="20"/>
+
+                <TextBlock Grid.Column="1" 
+                           VerticalAlignment="Top"
+                           Margin="5,18,1,0"
+                           FontSize="14"><Run Text="{x:Static ci:AppBase.AppCodeName}" FontWeight="Medium" FontSize="12"/><Run Text=" "/><Run Text="//" FontSize="10" Foreground="#686868"/><Run Text=" "/><Run Text="{x:Static ci:AppBase.AppVersion}" FontSize="10" Foreground="#686868"/></TextBlock>
+                <TextBlock Grid.Column="2" Margin="39,9,0,9"
+                           Text="{Binding SplashService.SplashStatus}"
+                           d:Text="正在启动…" Foreground="#686868"
+                           FontSize="16" Grid.ColumnSpan="3"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
